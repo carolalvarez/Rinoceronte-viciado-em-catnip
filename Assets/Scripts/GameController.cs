@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public List<GameObject> pull = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,18 @@ public class GameController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PullManager(GameObject bullet)
+    {
+        pull.Add(bullet);
+        bullet.SetActive(false);
+    }
+
+    public void ActiveBullet()
+    {
+        pull[0].SetActive(true);
+        pull[0].GetComponent<Bullet>().timer = 0;
+        pull.RemoveAt(0);
     }
 }
