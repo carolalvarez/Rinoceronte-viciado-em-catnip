@@ -147,15 +147,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431499112}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 0.27, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.3888341, w: 0.92130786}
+  m_LocalPosition: {x: 0.27000046, y: 0.26999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1334723705}
   m_Father: {fileID: 1210552293}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45.764}
 --- !u!114 &431499114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,7 +824,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1334723705}
   - component: {fileID: 1334723706}
-  - component: {fileID: 1334723707}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -839,8 +838,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334723704}
-  m_LocalRotation: {x: -0, y: -0, z: -0.40996027, w: 0.9121034}
-  m_LocalPosition: {x: 0.2499995, y: 0.22999999, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.023042707, w: 0.99973446}
+  m_LocalPosition: {x: 0.00961484, y: 0.33956897, z: 0}
   m_LocalScale: {x: 0.58457005, y: 0.7414905, z: 0.58457005}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -899,18 +898,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1334723707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334723704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49309ec9e3b7ca246968f1b9b1c9ddc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1569292544
 GameObject:
   m_ObjectHideFlags: 0
