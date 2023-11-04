@@ -13,6 +13,12 @@ public class Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.up = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.parent.position);
+        Vector2 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // get direction you want to point at
+        Vector2 direction = (mouseScreenPosition - (Vector2)transform.position).normalized;
+
+        // set vector of transform directly
+        transform.up = direction;
     }
 }
