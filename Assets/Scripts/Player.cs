@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject bulletPrefab;
 
-    GameController gameController;
+    GameManager gameManager;
     GameObject bullet_;
 
     Vector2 startPos;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     float cadenciaRef;
     float holdTime = 0;
     float timer = 0;
+    float timer2 = 0;
 
     [SerializeField]
     float cooldownCadencia;
@@ -37,15 +39,30 @@ public class Player : MonoBehaviour
     [SerializeField]
     float sumaCadencia = 0;
 
+    [SerializeField]
+    float timeShoting = 0;
+
+
     float bulletTime = 0;
+    [SerializeField]
+    float totalBulletTime= 0;
+    
+    [SerializeField]
+    Slider CadenciaBarr;
+    [SerializeField]
+    bool canShot;
+
+    bool ispressing;
 
     // Start is called before the first frame update
     void Start()
     {
         cadenciaRef = cadencia;
-        gameController = FindAnyObjectByType<GameController>();
+        gameManager = FindAnyObjectByType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         startPos = rb.position;
+        CadenciaBarr.maxValue = timeShoting;
+        canShot = true;
     }
 
     // Update is called once per frame
@@ -53,6 +70,7 @@ public class Player : MonoBehaviour
     {
         //print(timer);
         //Funcionamiento del Impulso
+        CadenciaBarr.value = totalBulletTime;
         if (Input.GetMouseButton(1))
         {
             holdTime += Time.deltaTime;
@@ -68,39 +86,82 @@ public class Player : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            cadencia = cadenciaRef;
+
         }
+
         if (Input.GetMouseButton(0))
         {
-            timer += Time.deltaTime;
-            if (timer >= cooldownCadencia)
+            if (canShot)
             {
-                if (cadencia <= topeCadencia)
-                    cadencia = topeCadencia;
-                else
-                    cadencia -= sumaCadencia;
+                timer += Time.deltaTime;
+                totalBulletTime += Time.deltaTime;
+                if (timer >= cooldownCadencia)
+                {
+                    if (cadencia <= topeCadencia)
+                        cadencia = topeCadencia;
+                    else
+                        cadencia -= sumaCadencia;
 
-                timer = 0;
+                    timer = 0;
+                }
+                bulletTime += Time.deltaTime;
+                if (bulletTime > cadencia)
+                {
+                    if (gameManager.pull.Count != 0)
+                    {
+                        bullet_ = gameManager.pull[0];
+                        gameManager.ActiveBullet();
+                        bullet_.transform.position = new Vector3(transform.GetChild(0).position.x + Random.Range(-0.5f, 0.5f), transform.GetChild(0).position.y + Random.Range(-0.5f, 0.5f), 0);
+                        bullet_.GetComponent<Bullet>().Movement();
+                    }
+                    else
+                    {
+                        bullet_ = Instantiate(bulletPrefab, new Vector3(transform.GetChild(0).position.x + Random.Range(-0.5f, 0.5f), transform.GetChild(0).position.y + Random.Range(-0.5f, 0.5f), 0), Quaternion.identity, transform);
+                    }
+                    bulletPrefab.GetComponent<Bullet>().player = gameObject;
+                    bulletTime = 0;
+                }
             }
-            bulletTime += Time.deltaTime;
-            if (bulletTime > cadencia)
+
+        }
+        else
+        {
+            print("control");
+            timer2 += Time.deltaTime;
+            if (timer2 >= cooldownCadencia)
             {
-                if (gameController.pull.Count != 0)
-                {
-                    bullet_ = gameController.pull[0];
-                    gameController.ActiveBullet();
-                    bullet_.transform.position = new Vector3(transform.position.x + Random.Range(-0.5f, 0.5f), transform.position.y + Random.Range(-0.5f, 0.5f), 0);
-                    bullet_.GetComponent<Bullet>().Movement();
-                }
+                if (cadencia >= cadenciaRef)
+                    cadencia = cadenciaRef;
                 else
-                {
-                    bullet_ = Instantiate(bulletPrefab, new Vector3(transform.position.x + Random.Range(-0.5f, 0.5f), transform.position.y + Random.Range(-0.5f, 0.5f), 0), Quaternion.identity, transform);
-                }
-                bulletPrefab.GetComponent<Bullet>().player = gameObject;
-                bulletTime = 0;
+                    cadencia += sumaCadencia;
+
+                timer2 = 0;
             }
+            if (totalBulletTime >= 0)
+            {
+                totalBulletTime -= Time.deltaTime * 1.1f;
+            }
+            else
+            {
+                totalBulletTime = 0;
+            }
+        }
 
+        if (totalBulletTime > timeShoting)
+        {
+            canShot = false;
+        }
 
+        if (!canShot) 
+        {
+            totalBulletTime -= Time.deltaTime * 1.1f;
+            if (totalBulletTime <= 0)
+            {
+                print("holi");
+                canShot = true;
+                totalBulletTime = 0;
+                cadencia = cadenciaRef;
+            }
         }
     }
 

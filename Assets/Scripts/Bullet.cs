@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     Vector2 bulletDir = Vector2.zero;
     Vector2 direction = Vector2.zero;
     Rigidbody2D rb;
-    GameController gameController;
+    GameManager gameManager;
     [SerializeField]
     float velocity = 0;
     public float timer = 0;
@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        gameController = FindObjectOfType<GameController>();
+        gameManager = FindObjectOfType<GameManager>();
         Movement();
     }
 
@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 2)
         {
-            gameController.PullManager(gameObject);
+            gameManager.PullManager(gameObject);
         }
         //transform.position = player.transform.position;
         //transform.GetComponent<Rigidbody2D>().velocity *= direction.normalized * 10;/*AddForce(, ForceMode2D.Impulse);*/
