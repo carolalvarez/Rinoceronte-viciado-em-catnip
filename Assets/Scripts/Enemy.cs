@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] private float Speed, DecelerateFactor, SpeedUpFactor, ElocoidFactor;
     float timer = 2f, speedRef, elicoidTimer, elicoidTimerRef;
-    bool changing, onTrigger;
+    bool onTrigger;
     int random = 7;
     void Start()
     {
@@ -33,10 +33,6 @@ public class Enemy : MonoBehaviour
         rb.velocity = transform.right * Speed;
         Randomizer();
 
-        if (changing)
-        {
-            Decelerate();
-        }
         switch (state)
         {
             case STATES.DECELERATING:
@@ -72,6 +68,7 @@ public class Enemy : MonoBehaviour
         if (collision.tag == "Left"|| collision.tag == "Right")
             onTrigger = false;
     }
+
     private void Randomizer()
     {
         timer -= Time.deltaTime;
@@ -83,7 +80,6 @@ public class Enemy : MonoBehaviour
             timer = 2;
         }
     }
-
     private void Decelerate()
     {
         if (Speed > 0)

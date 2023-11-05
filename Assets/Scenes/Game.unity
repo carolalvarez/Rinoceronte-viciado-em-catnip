@@ -201,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208864799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.97, y: -0.0766, z: 0}
+  m_LocalPosition: {x: -11.3, y: -0.0766, z: 0}
   m_LocalScale: {x: 1, y: 10.545501, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pull: []
+  Player: {fileID: 1210552291}
 --- !u!4 &442456788
 Transform:
   m_ObjectHideFlags: 0
@@ -617,6 +618,7 @@ GameObject:
   - component: {fileID: 896054678}
   - component: {fileID: 896054677}
   - component: {fileID: 896054679}
+  - component: {fileID: 896054682}
   - component: {fileID: 896054680}
   - component: {fileID: 896054681}
   m_Layer: 0
@@ -757,6 +759,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &896054682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896054675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0c80ef93185a84ba9d0acdfc799e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootTimer: 3
+  bullet: {fileID: 5845252305324430555, guid: 71d8a3c72e0242d46bb187f5c280c6cc, type: 3}
 --- !u!1 &950965562
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +972,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

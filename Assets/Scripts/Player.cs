@@ -45,14 +45,15 @@ public class Player : MonoBehaviour
 
     float bulletTime = 0;
     [SerializeField]
-    float totalBulletTime= 0;
-    
+    float totalBulletTime = 0;
+
     [SerializeField]
     Slider CadenciaBarr;
     [SerializeField]
     bool canShot;
 
-    bool ispressing;
+    bool ispressing, onTrigger;
+    Vector3 initPos;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
         startPos = rb.position;
         CadenciaBarr.maxValue = timeShoting;
         canShot = true;
+        initPos = transform.position;
     }
 
     // Update is called once per frame
@@ -71,23 +73,30 @@ public class Player : MonoBehaviour
         //print(timer);
         //Funcionamiento del Impulso
         CadenciaBarr.value = totalBulletTime;
-        if (Input.GetMouseButton(1))
-        {
-            holdTime += Time.deltaTime;
-            print(holdTime);
-        }
-        if (Input.GetMouseButtonUp(1) && holdTime >= holdMouseTime)
-        {
-            rb.AddForce(force, ForceMode2D.Impulse);
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            holdTime = 0;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-
-        }
+        //if (Input.GetMouseButton(1))
+        //{
+        //    rb.velocity += new Vector2(5 * Time.deltaTime, 0);
+        //    //else rb.velocity = Vector2.zero;
+        //}
+        //else
+        //{
+        //    //if (!onTrigger)
+        //    rb.velocity -= new Vector2(4 * Time.deltaTime, 0);
+        //    //else rb.velocity = Vector2.zero;
+        //}
+        ////if (Input.GetMouseButton(1))
+        //{
+        //    holdTime += Time.deltaTime;
+        //    print(holdTime);
+        //}
+        //if (Input.GetMouseButtonUp(1) && holdTime >= holdMouseTime)
+        //{
+        //    rb.AddForce(force, ForceMode2D.Impulse);
+        //}
+        //else if (Input.GetMouseButtonUp(1))
+        //{
+        //    holdTime = 0;
+        //}
 
         if (Input.GetMouseButton(0))
         {
@@ -152,7 +161,7 @@ public class Player : MonoBehaviour
             canShot = false;
         }
 
-        if (!canShot) 
+        if (!canShot)
         {
             totalBulletTime -= Time.deltaTime * 1.1f;
             if (totalBulletTime <= 0)
@@ -164,6 +173,4 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> pull = new List<GameObject>();
+    [SerializeField] GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +29,10 @@ public class GameManager : MonoBehaviour
         pull[0].SetActive(true);
         pull[0].GetComponent<Bullet>().timer = 0;
         pull.RemoveAt(0);
+    }
+
+    public GameObject FindPlayer()
+    {
+        return Player;
     }
 }
