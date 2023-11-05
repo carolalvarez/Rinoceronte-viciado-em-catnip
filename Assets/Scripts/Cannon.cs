@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Vector2 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // get direction you want to point at
         Vector2 direction = (mouseScreenPosition - (Vector2)transform.position).normalized;
-
-        // set vector of transform directly
         transform.up = direction;
+        LimitRot();
+    }
+
+    private void LimitRot()
+    {
+        if (transform.eulerAngles.z < 270 && transform.eulerAngles.z > 180)
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 270);
+
+        else if (transform.eulerAngles.z < 180 && transform.eulerAngles.z > 90)
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90);
     }
 }
