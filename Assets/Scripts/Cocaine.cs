@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Cocaine : MonoBehaviour
@@ -14,6 +15,7 @@ public class Cocaine : MonoBehaviour
     Slider slider;
 
     float temp = 0;
+    float time = 0;
     void Start()
     {
         slider.maxValue = SlideMaxValue;      
@@ -42,6 +44,7 @@ public class Cocaine : MonoBehaviour
             }
         }
         temp += Time.deltaTime;
+        time += Time.deltaTime;
         if(temp >= 0.25)
         {
             if (SlideValue > 0)
@@ -50,6 +53,10 @@ public class Cocaine : MonoBehaviour
                 SlideValue = 0;
 
             temp = 0;
+        }
+        if(time >= 5)
+        {
+            SceneManager.LoadScene(1);
         }
         
     }
