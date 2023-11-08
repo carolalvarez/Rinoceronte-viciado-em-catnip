@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Left
   - Right
+  - Ground
+  - Tank
   layers:
   - Default
   - TransparentFX

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1077287062929553714}
   - component: {fileID: 480061160272063987}
   - component: {fileID: 5617352079606937000}
+  - component: {fileID: 7621876136797521972}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,4 +98,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19eefeda87b0d48814df7877acba09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankSpeed: -6
+  tankSpeed: -16.8
+--- !u!58 &7621876136797521972
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6247190413611771247}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

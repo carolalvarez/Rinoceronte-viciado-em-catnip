@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     float cadencia;
 
     float cadenciaRef;
-    float holdTime = 0;
     float timer = 0;
     float timer2 = 0;
 
@@ -41,6 +40,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     float timeShoting = 0;
+    [SerializeField]
+    float jumpForce = 0;
 
 
     float bulletTime = 0;
@@ -52,12 +53,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool canShot;
 
-    bool ispressing, onTrigger;
+    bool ground;
     Vector3 initPos;
 
     // Start is called before the first frame update
     void Start()
     {
+        //ground = true;
         cadenciaRef = cadencia;
         gameManager = FindAnyObjectByType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
@@ -73,30 +75,11 @@ public class Player : MonoBehaviour
         //print(timer);
         //Funcionamiento del Impulso
         CadenciaBarr.value = totalBulletTime;
-        //if (Input.GetMouseButton(1))
-        //{
-        //    rb.velocity += new Vector2(5 * Time.deltaTime, 0);
-        //    //else rb.velocity = Vector2.zero;
-        //}
-        //else
-        //{
-        //    //if (!onTrigger)
-        //    rb.velocity -= new Vector2(4 * Time.deltaTime, 0);
-        //    //else rb.velocity = Vector2.zero;
-        //}
-        ////if (Input.GetMouseButton(1))
-        //{
-        //    holdTime += Time.deltaTime;
-        //    print(holdTime);
-        //}
-        //if (Input.GetMouseButtonUp(1) && holdTime >= holdMouseTime)
-        //{
-        //    rb.AddForce(force, ForceMode2D.Impulse);
-        //}
-        //else if (Input.GetMouseButtonUp(1))
-        //{
-        //    holdTime = 0;
-        //}
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1))
+        {
+            if(ground)
+                rb.AddForce(Vector2.up* jumpForce, ForceMode2D.Impulse);
+        }
 
         if (Input.GetMouseButton(0))
         {
@@ -135,7 +118,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            print("control");
             timer2 += Time.deltaTime;
             if (timer2 >= cooldownCadencia)
             {
@@ -171,6 +153,27 @@ public class Player : MonoBehaviour
                 totalBulletTime = 0;
                 cadencia = cadenciaRef;
             }
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            ground = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            ground = false;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tank"))
+        {
+            Debug.Log("Hited");
         }
     }
 }
