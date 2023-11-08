@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         CadenciaBarr.value = totalBulletTime; // actualizacion de la barra del UI
-
+        
         if (Input.GetKey(KeyCode.Space))
         {
             if(jumpTime < 1)
