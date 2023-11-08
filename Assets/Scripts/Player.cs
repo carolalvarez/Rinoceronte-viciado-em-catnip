@@ -8,78 +8,81 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    Vector2 force;
-
-    [SerializeField]
-    float holdMouseTime;
-
-    [SerializeField]
     GameObject bulletPrefab;
 
     GameManager gameManager;
     GameObject bullet_;
-
-    Vector2 startPos;
     Rigidbody2D rb;
 
-    [SerializeField]
-    float cadencia;
-
-    float cadenciaRef;
     float timer = 0;
     float timer2 = 0;
 
+    [Header("Disparo")]
+    [SerializeField]
+    float cadencia;
     [SerializeField]
     float cooldownCadencia;
-
     [SerializeField]
     float topeCadencia;
-
     [SerializeField]
     float sumaCadencia = 0;
-
     [SerializeField]
     float timeShoting = 0;
     [SerializeField]
-    float jumpForce = 0;
-
-
+    float holdMouseTime;
+    float cadenciaRef;
     float bulletTime = 0;
     [SerializeField]
     float totalBulletTime = 0;
-
     [SerializeField]
     Slider CadenciaBarr;
     [SerializeField]
     bool canShot;
 
-    bool ground;
-    Vector3 initPos;
 
-    // Start is called before the first frame update
+    [Header("Jump")]
+    [SerializeField]
+    float jumpForce = 0;
+    bool ground;
+    float jumpTime= 0;
+    float jumpForceRef;
+
     void Start()
     {
-        //ground = true;
-        cadenciaRef = cadencia;
         gameManager = FindAnyObjectByType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
-        startPos = rb.position;
+
+        cadenciaRef = cadencia;
         CadenciaBarr.maxValue = timeShoting;
         canShot = true;
-        initPos = transform.position;
+        jumpForceRef = jumpForce;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //print(timer);
-        //Funcionamiento del Impulso
-        CadenciaBarr.value = totalBulletTime;
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1))
+        CadenciaBarr.value = totalBulletTime; // actualizacion de la barra del UI
+
+        if (Input.GetKey(KeyCode.Space))
         {
-            if(ground)
-                rb.AddForce(Vector2.up* jumpForce, ForceMode2D.Impulse);
+            if(jumpTime < 1)
+            {
+                jumpTime += Time.deltaTime;
+            }
         }
+        if(Input.GetKeyUp(KeyCode.Space)) 
+        {
+            jumpForce *= jumpTime;
+
+            if (ground)
+            {
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                jumpTime = 0;
+                jumpForce = jumpForceRef;
+            }
+            
+        }
+
 
         if (Input.GetMouseButton(0))
         {
