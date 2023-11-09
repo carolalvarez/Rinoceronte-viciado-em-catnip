@@ -206,7 +206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &208864802
 BoxCollider2D:
@@ -385,7 +385,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &436074218
 MonoBehaviour:
@@ -401,52 +401,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankPref: {fileID: 6247190413611771247, guid: 8159fd256c8983c4a9cbd8e44adedf3b, type: 3}
   spawnTime: 4
---- !u!1 &442456786
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 442456788}
-  - component: {fileID: 442456787}
-  m_Layer: 0
-  m_Name: GameController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &442456787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 442456786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0980a326ea849a1489fbaf9a8b065742, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pull: []
-  Player: {fileID: 1210552291}
---- !u!4 &442456788
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 442456786}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1584396, y: 2.416806, z: -0.08396939}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +760,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &896054679
 MonoBehaviour:
@@ -952,7 +906,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1200520789
 GameObject:
@@ -1133,9 +1087,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 169154296106220730, guid: 963f0bc10bbd12642a6cbe9c4cbaa7d5, type: 3}
-  rinoSprites:
-  - {fileID: 7482667652216324306, guid: 97abfd5b360f37d48a58cb253323e1ca, type: 3}
-  - {fileID: 7482667652216324306, guid: 3ca0437bd2c5a674b926ef5e7bb3ec94, type: 3}
   cadencia: 0.3
   cooldownCadencia: 0.2
   topeCadencia: 0.02
@@ -1144,9 +1095,8 @@ MonoBehaviour:
   holdMouseTime: 2
   totalBulletTime: 0
   CadenciaBarr: {fileID: 1882964164}
-  canShot: 0
   jumpForce: 7
-  health: 10
+  healthBar: {fileID: 2115254502}
 --- !u!1001 &1282862828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1376,7 +1326,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1335937621
 BoxCollider2D:
@@ -1640,7 +1590,7 @@ Transform:
   - {fileID: 1946727637}
   - {fileID: 1200520790}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1841508701
 GameObject:
@@ -1889,7 +1839,7 @@ RectTransform:
   - {fileID: 1882964163}
   - {fileID: 2115254501}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2096,7 +2046,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1001 &1946727636
 PrefabInstance:

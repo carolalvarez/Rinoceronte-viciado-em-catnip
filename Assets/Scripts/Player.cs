@@ -37,7 +37,6 @@ public class Player : MonoBehaviour
     float totalBulletTime = 0;
     [SerializeField]
     Slider CadenciaBarr;
-    [SerializeField]
     bool canShot;
 
 
@@ -48,16 +47,24 @@ public class Player : MonoBehaviour
     float jumpTime= 0;
     float jumpForceRef;
 
+    [Header("Health")]   
     [SerializeField]
-    float health;
+    Slider healthBar;
+    int health;
 
     void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
 
+        if (gameManager.totalHealth < 10)
+            health = 10;
+        else
+            health = gameManager.totalHealth;
+
         cadenciaRef = cadencia;
         CadenciaBarr.maxValue = timeShoting;
+        healthBar.maxValue = health;
         canShot = true;
         jumpForceRef = jumpForce;
     }
@@ -66,6 +73,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         CadenciaBarr.value = totalBulletTime; // actualizacion de la barra del UI
+        healthBar.value = health;
         
         if (Input.GetKey(KeyCode.Space))
         {
@@ -184,7 +192,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Tank"))
         {
-            Debug.Log("Hited");
+            print(health);
+            health--;
         }
         if (collision.gameObject.CompareTag("BulletEnemy"))
         {

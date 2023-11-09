@@ -13,11 +13,12 @@ public class Cocaine : MonoBehaviour
     float SlideSume = 0;
     [SerializeField]
     Slider slider;
-
+    GameManager gameManager;
     float temp = 0;
     float time = 0;
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         slider.maxValue = SlideMaxValue;
     }
     void Update()
@@ -56,6 +57,7 @@ public class Cocaine : MonoBehaviour
         }
         if(time >= 5)
         {
+            gameManager.SetMaxHealth(SlideValue);
             SceneManager.LoadScene(1);
         }
         

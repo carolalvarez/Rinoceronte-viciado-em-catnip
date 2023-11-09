@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    
     public List<GameObject> pull = new List<GameObject>();
-    [SerializeField] GameObject Player;
 
+    public int totalHealth;
+
+    void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
     public void PullManager(GameObject bullet)
     {
         pull.Add(bullet);
@@ -19,9 +26,8 @@ public class GameManager : MonoBehaviour
         pull[0].GetComponent<Bullet>().timer = 0;
         pull.RemoveAt(0);
     }
-
-    public GameObject FindPlayer()
+    public void SetMaxHealth(float points)
     {
-        return Player;
+        totalHealth = (int)points;
     }
 }

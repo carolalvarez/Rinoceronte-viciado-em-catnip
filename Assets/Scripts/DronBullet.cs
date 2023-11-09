@@ -15,18 +15,14 @@ public class DronBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         gameManager= FindObjectOfType<GameManager>();
-        Player = gameManager.FindPlayer();
+        Player = GameObject.Find("Rino");
+        direction = Player.transform.position - transform.position;
+        transform.up = direction;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer-= Time.deltaTime;
-        if (timer >= 0)
-        {
-            direction = Player.transform.position - transform.position;
-            transform.up = direction;
-        }
         rb.velocity = transform.up*speed;
     }
 }
