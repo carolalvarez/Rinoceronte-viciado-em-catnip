@@ -69,6 +69,10 @@ public class Player : MonoBehaviour
             {
                 jumpTime += Time.deltaTime;
             }
+            if (jumpTime <= 0.15)
+            {
+                jumpTime = 0.5f;
+            }
         }
         if(Input.GetKeyUp(KeyCode.Space)) 
         {

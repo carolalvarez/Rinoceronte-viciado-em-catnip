@@ -1142,7 +1142,7 @@ MonoBehaviour:
   totalBulletTime: 0
   CadenciaBarr: {fileID: 1882964164}
   canShot: 0
-  jumpForce: 30
+  jumpForce: 7
 --- !u!1001 &1282862828
 PrefabInstance:
   m_ObjectHideFlags: 0
