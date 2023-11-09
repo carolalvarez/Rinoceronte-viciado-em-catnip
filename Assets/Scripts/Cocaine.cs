@@ -58,7 +58,7 @@ public class Cocaine : MonoBehaviour
         if(time >= 5)
         {
             gameManager.SetMaxHealth(SlideValue);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         
     }
