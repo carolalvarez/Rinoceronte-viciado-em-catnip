@@ -16,18 +16,35 @@ public class Cocaine : MonoBehaviour
     GameManager gameManager;
     float temp = 0;
     float time = 0;
+    float tempSprite = 0;
+    [SerializeField]
+    Sprite rinoSnif, rinoSnifnt;
+    [SerializeField]
+    GameObject rinoBack;
+
+    bool sniffing;
     void Start()
     {
+        sniffing = false;
         gameManager = FindObjectOfType<GameManager>();
         slider.maxValue = SlideMaxValue;
     }
     void Update()
     {
-        Debug.Log(SlideValue);
+        Debug.Log(sniffing);
+
+        if (sniffing)
+            rinoBack.GetComponent<SpriteRenderer>().sprite = rinoSnif;
+        else
+            rinoBack.GetComponent<SpriteRenderer>().sprite = rinoSnifnt;
+
         slider.value = SlideValue;
         if (Input.GetMouseButtonDown(1)|| Input.GetMouseButtonDown(0))
         {
-            if(SlideValue >= SlideMaxValue)
+            tempSprite = 0;
+            sniffing = true;
+
+            if (SlideValue >= SlideMaxValue)
             {
                 SlideValue = SlideMaxValue;
             }
@@ -42,20 +59,31 @@ public class Cocaine : MonoBehaviour
             else 
             {
                 SlideValue += SlideSume*0.5f;
-            }
+            } 
         }
+        tempSprite += Time.deltaTime;
+        if(tempSprite>0.5)
+        {
+            sniffing = false;
+        }
+
         temp += Time.deltaTime;
         time += Time.deltaTime;
+
         if(temp >= 0.25)
         {
             if (SlideValue > 0)
+            {              
                 SlideValue -= 1;
+            }
             else
+            {
                 SlideValue = 0;
-
+            }
             temp = 0;
         }
-        if(time >= 5)
+
+        if(time >= 8)
         {
             gameManager.SetMaxHealth(SlideValue);
             SceneManager.LoadScene(2);

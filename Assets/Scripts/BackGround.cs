@@ -6,8 +6,6 @@ public class BackGround : MonoBehaviour
 {
     [SerializeField]
     float backgroundSpeed = 0;
-    [SerializeField]
-    Transform destroyPoint;
     void Start()
     {
     }
@@ -16,7 +14,7 @@ public class BackGround : MonoBehaviour
     {
         transform.position += new Vector3(backgroundSpeed * Time.deltaTime,0,0);
 
-        if (transform.position.x <= -23.1900005)
+        if (transform.position.x <= -50)
         {
             Destroy(this.gameObject);
         }

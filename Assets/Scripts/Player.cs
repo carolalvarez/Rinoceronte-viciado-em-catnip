@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -72,6 +73,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(health<=0)
+        {
+            SceneManager.LoadScene("EndMenu");
+        }
         CadenciaBarr.value = totalBulletTime; // actualizacion de la barra del UI
         healthBar.value = health;
         
@@ -167,7 +172,6 @@ public class Player : MonoBehaviour
             totalBulletTime -= Time.deltaTime * 1.1f;
             if (totalBulletTime <= 0)
             {
-                print("holi");
                 canShot = true;
                 totalBulletTime = 0;
                 cadencia = cadenciaRef;
