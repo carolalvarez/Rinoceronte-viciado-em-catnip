@@ -7,8 +7,14 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
+    guid: 973a8b0b656d2ed43872e026af3e6258
+  - enabled: 1
+    path: Assets/Scenes/SniffScene.unity
     guid: 482e8d444f4c9634c902a9013727f1ed
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/EndMenu.unity
+    guid: bbd1b4341c9f0c64180621a5c5afcdbe
   m_configObjects: {}

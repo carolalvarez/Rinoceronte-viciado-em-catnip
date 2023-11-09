@@ -9,7 +9,6 @@ public class DronBullet : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] float speed;
     GameManager gameManager;
-    float timer = 1;
     // Start is called before the first frame update
     void Start()
     {
