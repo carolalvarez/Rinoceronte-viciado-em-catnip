@@ -6,10 +6,6 @@ public class Tank : MonoBehaviour
 {
     [SerializeField]
     float tankSpeed;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
