@@ -823,6 +823,7 @@ GameObject:
   - component: {fileID: 1210552294}
   - component: {fileID: 1210552295}
   - component: {fileID: 1210552296}
+  - component: {fileID: 1210552297}
   m_Layer: 0
   m_Name: Rino
   m_TagString: Untagged
@@ -968,6 +969,27 @@ MonoBehaviour:
   CadenciaBarr: {fileID: 1882964164}
   jumpForce: 7
   healthBar: {fileID: 2115254502}
+--- !u!95 &1210552297
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210552291}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ce542dd4d3f2c34baf8c15cb887caa5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1282862828
 PrefabInstance:
   m_ObjectHideFlags: 0
