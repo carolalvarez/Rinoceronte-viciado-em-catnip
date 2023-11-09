@@ -7,23 +7,37 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     GameObject tankPref;
     [SerializeField]
-    float spawnTime;
+    GameObject helicopterPref;
+    [SerializeField]
+    float spawnTankTime;
+    [SerializeField]
+    float spawnHelicopterTime;
+    [SerializeField]
+    Transform spawnpointTank, spawnPointHelicopter;
 
-    float time;
+    float time1, time2;
     void Start()
     {
-        time = 0;
+        time1 = 0;
+        time2 = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
+        time1 += Time.deltaTime;
+        time2 += Time.deltaTime;
         
-        if(time > spawnTime)
+        if(time1 > spawnTankTime)
         {
-            Instantiate(tankPref,transform.position,Quaternion.identity);
-            time = 0;
+            Instantiate(tankPref,spawnpointTank.position,Quaternion.identity);
+            time1 = 0;
+        }
+
+        if (time2 > spawnHelicopterTime)
+        {
+            Instantiate(helicopterPref, spawnPointHelicopter.position, Quaternion.identity);
+            time2 = 0;
         }
     }
 }

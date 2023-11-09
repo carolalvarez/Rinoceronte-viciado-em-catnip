@@ -4,37 +4,37 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public enum STATES { MOVING, DECELERATING, SPEEDUP }
+    public enum STATES { ENTRING, MOVING, DECELERATING, SPEEDUP }
     public STATES state;
     Rigidbody2D rb;
     [SerializeField] private float Speed, DecelerateFactor, SpeedUpFactor, ElocoidFactor;
     float timer = 2f, speedRef, elicoidTimer, elicoidTimerRef;
     bool onTrigger;
     int random = 7;
+    [SerializeField]
+    int health = 0;
+
+    float timer_ = 0;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         speedRef = Speed;
         elicoidTimer = Random.Range(0.5f, 1);
         elicoidTimerRef = elicoidTimer;
+        state = STATES.ENTRING;
     }
 
     // Update is called once per frame
     void Update()
     {
-        elicoidTimer-=Time.deltaTime;
-        if (elicoidTimer <= 0)
-        {
-            ElocoidFactor *= -1;
-            elicoidTimer = elicoidTimerRef;
-        }
-        transform.position= new Vector2(transform.position.x, transform.position.y + ElocoidFactor * Time.deltaTime);
-
-        rb.velocity = transform.right * Speed;
-        Randomizer();
 
         switch (state)
         {
+            case STATES.ENTRING:
+                {
+                    Entring();
+                }
+                break;
             case STATES.DECELERATING:
                 {
                     Decelerate();
@@ -45,18 +45,36 @@ public class Enemy : MonoBehaviour
                     SpeedUp();
                 }
                 break;
+            case STATES.MOVING:
+                {
+                    elicoidTimer -= Time.deltaTime;
+                    if (elicoidTimer <= 0)
+                    {
+                        ElocoidFactor *= -1;
+                        elicoidTimer = elicoidTimerRef;
+                    }
+                    transform.position = new Vector2(transform.position.x, transform.position.y + ElocoidFactor * Time.deltaTime);
+
+                    rb.velocity = transform.right * Speed;
+                    Randomizer();
+                }
+                break;
+        }
+        if(health<=0)
+        {
+            Destroy(this.gameObject);
         }
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Left")
+        if (collision.tag == "Left" && state != STATES.ENTRING)
         {
             onTrigger=true;
             state = STATES.DECELERATING;
         }
-        else if (collision.tag == "Right")
+        else if (collision.tag == "Right" && state != STATES.ENTRING)
         {
             onTrigger = true;
             state = STATES.DECELERATING;
@@ -67,8 +85,21 @@ public class Enemy : MonoBehaviour
     {
         if (collision.tag == "Left"|| collision.tag == "Right")
             onTrigger = false;
+
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            health--;
+            Destroy(collision.gameObject);
+        }
     }
 
+    private void Entring()
+    {
+        transform.position -= new Vector3(Speed * Time.deltaTime, 0, 0);
+        timer_ += Time.deltaTime;
+        if (timer_ > 2)
+            state = STATES.MOVING;
+    }
     private void Randomizer()
     {
         timer -= Time.deltaTime;
