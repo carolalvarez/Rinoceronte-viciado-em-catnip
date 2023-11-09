@@ -8,6 +8,7 @@ TagManager:
   - Right
   - Ground
   - Tank
+  - BulletEnemy
   layers:
   - Default
   - TransparentFX

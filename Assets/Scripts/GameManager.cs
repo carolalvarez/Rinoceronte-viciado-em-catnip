@@ -6,17 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public List<GameObject> pull = new List<GameObject>();
     [SerializeField] GameObject Player;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void PullManager(GameObject bullet)
     {

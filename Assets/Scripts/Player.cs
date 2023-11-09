@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    float health;
+    [SerializeField]
     GameObject bulletPrefab;
 
     GameManager gameManager;
@@ -181,6 +183,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Tank"))
         {
             Debug.Log("Hited");
+        }
+        if (collision.gameObject.CompareTag("BulletEnemy"))
+        {
+            print(health);
+            health--;
         }
     }
 }

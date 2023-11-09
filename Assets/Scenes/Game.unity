@@ -1132,6 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683a211dec05ab545b60251a9cf2009a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
   bulletPrefab: {fileID: 169154296106220730, guid: 963f0bc10bbd12642a6cbe9c4cbaa7d5, type: 3}
   cadencia: 0.3
   cooldownCadencia: 0.2

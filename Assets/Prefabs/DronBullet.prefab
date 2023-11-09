@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7380729969004505616}
   m_Layer: 0
   m_Name: DronBullet
-  m_TagString: Untagged
+  m_TagString: BulletEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
