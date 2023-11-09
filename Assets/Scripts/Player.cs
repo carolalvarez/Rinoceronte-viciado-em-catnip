@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    float health;
+
     [SerializeField]
     GameObject bulletPrefab;
 
@@ -48,6 +47,9 @@ public class Player : MonoBehaviour
     bool ground;
     float jumpTime= 0;
     float jumpForceRef;
+
+    [SerializeField]
+    float health;
 
     void Start()
     {

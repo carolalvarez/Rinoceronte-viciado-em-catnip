@@ -18,7 +18,7 @@ public class Cocaine : MonoBehaviour
     float time = 0;
     void Start()
     {
-        slider.maxValue = SlideMaxValue;      
+        slider.maxValue = SlideMaxValue;
     }
     void Update()
     {

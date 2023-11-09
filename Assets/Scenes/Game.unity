@@ -1132,8 +1132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683a211dec05ab545b60251a9cf2009a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
   bulletPrefab: {fileID: 169154296106220730, guid: 963f0bc10bbd12642a6cbe9c4cbaa7d5, type: 3}
+  rinoSprites:
+  - {fileID: 7482667652216324306, guid: 97abfd5b360f37d48a58cb253323e1ca, type: 3}
+  - {fileID: 7482667652216324306, guid: 3ca0437bd2c5a674b926ef5e7bb3ec94, type: 3}
   cadencia: 0.3
   cooldownCadencia: 0.2
   topeCadencia: 0.02
@@ -1144,6 +1146,7 @@ MonoBehaviour:
   CadenciaBarr: {fileID: 1882964164}
   canShot: 0
   jumpForce: 7
+  health: 10
 --- !u!1001 &1282862828
 PrefabInstance:
   m_ObjectHideFlags: 0
