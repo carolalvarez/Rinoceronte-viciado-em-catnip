@@ -10,10 +10,6 @@ public class GatoRotacion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Vector3 dir = player.transform.position - transform.position;
-        Quaternion.RotateTowards(transform.rotation, player.transform.rotation, 60f);
-        //rotation.x = 0;
-        //rotation.y = 0;
-        //transform.rotation = rotation;
+        Quaternion.FromToRotation(transform.position, player.transform.position);
     }
 }
