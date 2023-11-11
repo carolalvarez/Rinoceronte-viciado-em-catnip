@@ -13,10 +13,12 @@ public class Enemy : MonoBehaviour
     int random = 7;
     [SerializeField]
     int health = 0;
+    AudioSource EnemyAudio;
 
     float timer_ = 0;
     void Start()
     {
+        EnemyAudio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         speedRef = Speed;
         elicoidTimer = Random.Range(0.5f, 1);
@@ -88,6 +90,7 @@ public class Enemy : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            EnemyAudio.Play();
             health--;
             Destroy(collision.gameObject);
         }
@@ -120,6 +123,7 @@ public class Enemy : MonoBehaviour
             {
                 Speed = 0;
                 transform.right *= -1;
+                transform.GetComponent<SpriteRenderer>().flipX = !transform.GetComponent<SpriteRenderer>().flipX;
                 state = STATES.SPEEDUP;
             }
         }

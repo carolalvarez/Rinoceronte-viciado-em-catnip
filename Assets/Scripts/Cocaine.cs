@@ -26,6 +26,9 @@ public class Cocaine : MonoBehaviour
     void Start()
     {
         sniffing = false;
+        temp = 0;
+        time = 0;
+        tempSprite = 0;
         gameManager = FindObjectOfType<GameManager>();
         slider.maxValue = SlideMaxValue;
     }
@@ -85,6 +88,9 @@ public class Cocaine : MonoBehaviour
 
         if(time >= 8)
         {
+            temp = 0;
+            time = 0;
+            tempSprite = 0;
             gameManager.SetMaxHealth(SlideValue);
             SceneManager.LoadScene(2);
         }

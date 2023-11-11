@@ -21,6 +21,12 @@ public class Player : MonoBehaviour
 
     [Header("Disparo")]
     [SerializeField]
+    AudioSource GunAudio;
+    [SerializeField]
+    Animator GunAnim;
+    [SerializeField]
+    Transform Gun;
+    [SerializeField]
     float cadencia;
     [SerializeField]
     float cooldownCadencia;
@@ -51,12 +57,17 @@ public class Player : MonoBehaviour
     [Header("Health")]   
     [SerializeField]
     Slider healthBar;
+    SpriteRenderer sprite;
     int health;
+    bool hited;
+    float hitedTime = 0;
 
     void Start()
     {
+        hited = false;
         gameManager = FindAnyObjectByType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
 
         if (gameManager.totalHealth < 10)
             health = 10;
@@ -73,6 +84,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(hited)
+        {
+            InvokeRepeating("AlternarActivacion", 0f, 0.2f);
+            hitedTime += Time.deltaTime;
+            if(hitedTime>0.5)
+            {               
+                hitedTime = 0;
+                hited = false;
+                sprite.enabled = true;
+                CancelInvoke("AlternarActivacion");
+            }
+        }
         if(health<=0)
         {
             SceneManager.LoadScene("EndMenu");
@@ -109,6 +132,7 @@ public class Player : MonoBehaviour
         {
             if (canShot)
             {
+                GunAnim.SetBool("Shotting", true);
                 timer += Time.deltaTime;
                 totalBulletTime += Time.deltaTime;
                 if (timer >= cooldownCadencia)
@@ -123,16 +147,17 @@ public class Player : MonoBehaviour
                 bulletTime += Time.deltaTime;
                 if (bulletTime > cadencia)
                 {
+                    GunAudio.Play();
                     if (gameManager.pull.Count != 0)
                     {
                         bullet_ = gameManager.pull[0];
                         gameManager.ActiveBullet();
-                        bullet_.transform.position = new Vector3(transform.GetChild(0).position.x + Random.Range(-0.5f, 0.5f), transform.GetChild(0).position.y + Random.Range(-0.5f, 0.5f), 0);
+                        bullet_.transform.position = new Vector3(Gun.position.x + Random.Range(-0.5f, 0.5f), Gun.position.y + Random.Range(-0.5f, 0.5f), 0);
                         bullet_.GetComponent<Bullet>().Movement();
                     }
                     else
                     {
-                        bullet_ = Instantiate(bulletPrefab, new Vector3(transform.GetChild(0).position.x + Random.Range(-0.5f, 0.5f), transform.GetChild(0).position.y + Random.Range(-0.5f, 0.5f), 0), Quaternion.identity, transform);
+                        bullet_ = Instantiate(bulletPrefab, new Vector3(Gun.position.x + Random.Range(-0.5f, 0.5f), Gun.position.y + Random.Range(-0.5f, 0.5f), 0), Quaternion.identity, transform);
                     }
                     bulletPrefab.GetComponent<Bullet>().player = gameObject;
                     bulletTime = 0;
@@ -142,6 +167,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            GunAnim.SetBool("Shotting", false);
             timer2 += Time.deltaTime;
             if (timer2 >= cooldownCadencia)
             {
@@ -169,6 +195,7 @@ public class Player : MonoBehaviour
 
         if (!canShot)
         {
+            GunAnim.SetBool("Shotting", false);
             totalBulletTime -= Time.deltaTime * 1.1f;
             if (totalBulletTime <= 0)
             {
@@ -194,15 +221,23 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Tank"))
+        if (collision.gameObject.CompareTag("Tank") && !hited)
         {
+            this.gameObject.GetComponent<AudioSource>().Play();
+            hited = true;
             print(health);
             health--;
         }
-        if (collision.gameObject.CompareTag("BulletEnemy"))
+        if (collision.gameObject.CompareTag("BulletEnemy") && !hited)
         {
+            this.gameObject.GetComponent<AudioSource>().Play();
+            hited = true;
             print(health);
             health--;
         }
+    }
+    void AlternarActivacion()
+    {
+        sprite.enabled = !sprite.enabled;
     }
 }

@@ -8,6 +8,7 @@ public class DronBullet : MonoBehaviour
     Vector2 direction;
     Rigidbody2D rb;
     [SerializeField] float speed;
+    float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +22,8 @@ public class DronBullet : MonoBehaviour
     void Update()
     {
         rb.velocity = transform.up*speed;
+        timer += Time.deltaTime;
+        if (timer > 5)
+            Destroy(this.gameObject);
     }
 }

@@ -14,12 +14,14 @@ public class SpawnManager : MonoBehaviour
     float spawnHelicopterTime;
     [SerializeField]
     Transform spawnpointTank, spawnPointHelicopter;
+    TimeManager timeMan;
 
     float time1, time2;
     void Start()
     {
         time1 = 0;
         time2 = 0;
+        timeMan = FindObjectOfType<TimeManager>();
     }
 
     // Update is called once per frame
