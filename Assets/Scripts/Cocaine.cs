@@ -44,14 +44,16 @@ public class Cocaine : MonoBehaviour
             rinoBack.GetComponent<SpriteRenderer>().sprite = rinoSnif;
         }
         else
+        {
+            rinoSniffSound.Play();
             rinoBack.GetComponent<SpriteRenderer>().sprite = rinoSnifnt;
+        }
 
         slider.value = SlideValue;
         if (Input.GetMouseButtonDown(1)|| Input.GetMouseButtonDown(0))
         {
             tempSprite = 0;
             sniffing = true;
-            rinoSniffSound.Play();
             if (SlideValue >= SlideMaxValue)
             {
                 SlideValue = SlideMaxValue;
