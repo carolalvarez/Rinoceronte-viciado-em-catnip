@@ -445,8 +445,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankPref: {fileID: 6247190413611771247, guid: 8159fd256c8983c4a9cbd8e44adedf3b, type: 3}
   helicopterPref: {fileID: 6720874061881600409, guid: 355be944a52667542b28293abf3d8a98, type: 3}
-  spawnTankTime: 10
-  spawnHelicopterTime: 10
+  spawnTankTimeMax: 10
+  spawnTankTimeMin: 3
+  spawnHelicopterTimeMax: 10
+  spawnHelicopterTimeMin: 3
   spawnpointTank: {fileID: 862561119}
   spawnPointHelicopter: {fileID: 1749134059}
 --- !u!1 &488349540

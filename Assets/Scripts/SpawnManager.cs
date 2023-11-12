@@ -9,36 +9,41 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     GameObject helicopterPref;
     [SerializeField]
-    float spawnTankTime;
+    float spawnTankTimeMax; 
     [SerializeField]
-    float spawnHelicopterTime;
+    float spawnTankTimeMin;
+    [SerializeField]
+    float spawnHelicopterTimeMax;
+    [SerializeField]
+    float spawnHelicopterTimeMin;
     [SerializeField]
     Transform spawnpointTank, spawnPointHelicopter;
     TimeManager timeMan;
+    float time1_, time2_;
 
     float time1, time2;
     void Start()
     {
-        time1 = 0;
-        time2 = 0;
+        time1 = Random.Range(spawnTankTimeMin, spawnTankTimeMax);
+        time2 = Random.Range(spawnHelicopterTimeMin, spawnHelicopterTimeMax); 
         timeMan = FindObjectOfType<TimeManager>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         time1 += Time.deltaTime;
         time2 += Time.deltaTime;
         
-        if(time1 > spawnTankTime)
+        if(time1 > time1_)
         {
             Instantiate(tankPref,spawnpointTank.position,Quaternion.identity);
+            time1_ = Random.Range(spawnTankTimeMin, spawnTankTimeMax);
             time1 = 0;
         }
 
-        if (time2 > spawnHelicopterTime)
+        if (time2 > time2_)
         {
             Instantiate(helicopterPref, spawnPointHelicopter.position, Quaternion.identity);
+            time2_ = Random.Range(spawnHelicopterTimeMin, spawnHelicopterTimeMax);
             time2 = 0;
         }
     }
