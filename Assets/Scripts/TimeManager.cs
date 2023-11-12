@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class TimeManager : MonoBehaviour
 {
     [SerializeField]
-    float time = 100;
+    float time = 10;
     int tMinutos, tSegundos, tDecimasSegundo;
     [SerializeField]
     TMP_Text time_;
