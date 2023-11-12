@@ -41,7 +41,6 @@ public class Cocaine : MonoBehaviour
 
         if (sniffing)
         {
-            rinoSniffSound.Play();
             rinoBack.GetComponent<SpriteRenderer>().sprite = rinoSnif;
         }
         else
@@ -52,7 +51,7 @@ public class Cocaine : MonoBehaviour
         {
             tempSprite = 0;
             sniffing = true;
-
+            rinoSniffSound.Play();
             if (SlideValue >= SlideMaxValue)
             {
                 SlideValue = SlideMaxValue;
