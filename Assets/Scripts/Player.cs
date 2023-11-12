@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
         }
         if(health<=0)
         {
-            SceneManager.LoadScene("EndMenu");
+            SceneManager.LoadScene(3);
         }
         CadenciaBarr.value = totalBulletTime; // actualizacion de la barra del UI
         healthBar.value = health;

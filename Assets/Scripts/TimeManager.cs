@@ -25,7 +25,7 @@ public class TimeManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("New Scene");
+            SceneManager.LoadScene(4);
         }
         tMinutos = Mathf.FloorToInt(time / 60);
         tSegundos = Mathf.FloorToInt(time % 60);

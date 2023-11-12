@@ -21,11 +21,6 @@ public class BackgroundController : MonoBehaviour
     [SerializeField]
     float spawnTimerGround;
 
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

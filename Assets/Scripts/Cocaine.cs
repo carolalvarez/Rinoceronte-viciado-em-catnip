@@ -23,11 +23,15 @@ public class Cocaine : MonoBehaviour
     GameObject rinoBack;
     [SerializeField]
     AudioSource rinoSniffSound;
+    [SerializeField]
+    AudioSource musicaSniff;
 
     bool sniffing;
     void Start()
     {
         rinoSniffSound = GetComponent<AudioSource>();
+        musicaSniff = GetComponent<AudioSource>();
+        musicaSniff.Play();
         sniffing = false;
         temp = 0;
         time = 0;

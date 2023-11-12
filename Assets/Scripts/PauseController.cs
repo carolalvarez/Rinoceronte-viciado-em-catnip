@@ -13,11 +13,14 @@ public class PauseController : MonoBehaviour
     Button button;
     [SerializeField]
     Sprite mute, notMute;
+    AudioSource audioJuego;
 
     private void Start()
     {
         button.GetComponent<Image>().sprite = notMute;
         AudioListener.volume = 1;
+        audioJuego = GetComponent<AudioSource>();
+        audioJuego.Play();
     }
     private void Update()
     {
@@ -32,12 +35,14 @@ public class PauseController : MonoBehaviour
         Time.timeScale = 0;
         Normal.SetActive(false);
         Menu.SetActive(true);
+        audioJuego.Pause();
     }
     public void DesactivarMenu()
     {
         Time.timeScale = 1;
         Normal.SetActive(true);
         Menu.SetActive(false);
+        audioJuego.Play();
     }
     public void MuteEvent()
     {

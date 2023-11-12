@@ -9,6 +9,12 @@ public class ButtonManager : MonoBehaviour
     GameObject controles;
     [SerializeField]
     GameObject menuInicial;
+    AudioSource audioMenu;
+    private void Start()
+    {
+        audioMenu = GetComponent<AudioSource>();
+        audioMenu.Play();
+    }
     public void Reiniciar()
     {
         SceneManager.LoadScene(1);
