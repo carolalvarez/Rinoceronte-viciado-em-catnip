@@ -21,10 +21,13 @@ public class Cocaine : MonoBehaviour
     Sprite rinoSnif, rinoSnifnt;
     [SerializeField]
     GameObject rinoBack;
+    [SerializeField]
+    AudioSource rinoSniffSound;
 
     bool sniffing;
     void Start()
     {
+        rinoSniffSound = GetComponent<AudioSource>();
         sniffing = false;
         temp = 0;
         time = 0;
@@ -37,7 +40,10 @@ public class Cocaine : MonoBehaviour
         Debug.Log(sniffing);
 
         if (sniffing)
+        {
+            rinoSniffSound.Play();
             rinoBack.GetComponent<SpriteRenderer>().sprite = rinoSnif;
+        }
         else
             rinoBack.GetComponent<SpriteRenderer>().sprite = rinoSnifnt;
 
